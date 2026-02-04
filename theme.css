@@ -3,7 +3,13 @@
     /* bg colors */
     --bg-primary-color: rgb(17, 17, 17);
     --bg-secondary-color: rgb(34, 34, 34);
-    --bg-tertiary-color: rgb(233, 233, 233);
+    --bg-active-color: rgb(233, 233, 233);
+
+    /* text colors */
+    --text-primary-color: rgb(237, 237, 237);
+    --text-secondary-color: rgb(200, 200, 200);
+    --text-tertiary-color: rgb(150, 150, 150);
+    --text-active-color: rgb(24, 24, 24);
 
     /* paddings */
     --padding-sm: 0.5rem;
