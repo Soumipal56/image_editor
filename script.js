@@ -57,6 +57,8 @@ const filters = {
     },
 }
 
+const imageCanvas = document.querySelector("image-canvas")
+const imgInput = document.querySelector("#image-input")
 const filtersContainer = document.querySelector(".filters")
 
 function createFilterElement(name, unit="%", value, min, max){
@@ -73,12 +75,19 @@ function createFilterElement(name, unit="%", value, min, max){
     const p = document.createElement("p")
     p.innerText = name
 
-    dispatchEvent.appendChild(p)
-    dispatchEvent.appendChild(input)
+    filterContainer.appendChild(p)
+    filterContainer.appendChild(input)
 
     return filterContainer
 }
 
 Object.keys(filters).forEach(key => {
     const filterElement = createFilterElement(key, filters[key].unit, filters[key].value, filters[key].min, filters[key].max)
+    filtersContainer.appendChild(filterElement)
+})
+
+imgInput.addEventListener("change", ()=>{
+    const file = event.target.files[0]
+
+    console.log(file)
 })
