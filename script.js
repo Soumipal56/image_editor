@@ -3,21 +3,19 @@ const filters = {
     value: 100,
     min: 0,
     max: 200,
+    unit: "%",
   },
   contrast: {
     value: 100,
     min: 0,
     max: 200,
-  },
-  exposure: {
-    value: 0,
-    min: -100,
-    max: 100,
+    unit: "%",
   },
   saturation: {
     value: 100,
     min: 0,
     max: 200,
+    unit: "%",
   },
   hueRotate: {
     value: 0,
@@ -31,13 +29,19 @@ const filters = {
     max: 20,
     unit: "px",
   },
+  sepia: {
+    value: 0,
+    min: 0, 
+    max: 100,
+    unit: "%",
+  },  
   grayscale: {
     value: 0,
     min: 0,
     max: 100,
     unit: "%",
-  },
-  sepia: {
+  },  
+  invert: {
     value: 0,
     min: 0,
     max: 100,
@@ -45,12 +49,6 @@ const filters = {
   },
   opacity: {
     value: 100,
-    min: 0,
-    max: 100,
-    unit: "%",
-  },
-  invert: {
-    value: 0,
     min: 0,
     max: 100,
     unit: "%",
@@ -71,6 +69,8 @@ for (let i = 0; i < 30; i++) {
 const imageCanvas = document.querySelector("#image-canvas");
 const imgInput = document.querySelector("#image-input");
 const canvasCtx = imageCanvas.getContext("2d");
+let file = null;
+let image = null;
 
 const filtersContainer = document.querySelector(".filters");
 
@@ -91,6 +91,11 @@ function createFilterElement(name, unit = "%", value, min, max) {
   filterContainer.appendChild(p);
   filterContainer.appendChild(input);
 
+  input.addEventListener("input", (e) => {
+    filters[name].value = e.target.value;
+    applyFilters();
+  })
+
   return filterContainer;
 }
 
@@ -108,17 +113,33 @@ Object.keys(filters).forEach((key) => {
 imgInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
   const imagePlaceholder = document.querySelector(".placeholder");
+  const box = document.querySelector(".box");
+  imageCanvas.style.display = "block";
   imagePlaceholder.style.display = "none";
+  box.style.border = "none";
 
   const img = new Image();
   img.src = URL.createObjectURL(file);
 
   img.onload = () => {
+    image = img;
     imageCanvas.width = img.width;
     imageCanvas.height = img.height;
     canvasCtx.drawImage(img, 0, 0);
   };
 });
 
-
-
+function applyFilters(){
+  canvasCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+  canvasCtx.filter = `brightness(${filters.brightness.value}${filters.brightness.unit})
+    contrast(${filters.contrast.value}${filters.contrast.unit})
+    saturate(${filters.saturation.value}${filters.saturation.unit})
+    hue-rotate(${filters.hueRotate.value}${filters.hueRotate.unit})
+    blur(${filters.blur.value}${filters.blur.unit})
+    sepia(${filters.sepia.value}${filters.sepia.unit})
+    grayscale(${filters.grayscale.value}${filters.grayscale.unit})
+    invert(${filters.invert.value}${filters.invert.unit})
+    opacity(${filters.opacity.value}${filters.opacity.unit})
+    `.trim();
+  canvasCtx.drawImage(image, 0, 0);
+}

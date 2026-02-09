@@ -23,13 +23,17 @@ html {
     sans-serif;
   /* background-color: var(--bg-primary-color); */
   color: var(--text-primary-color);
+  overflow-y: hidden;
 }
 
-main {
+main{
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.background {
   width: 100vw;
   position: relative;
-  height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,20 +41,21 @@ main {
 }
 
 /* Animated gradient overlay */
-main::before {
+.background::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     45deg,
     rgba(102, 126, 234, 0.3) 0%,
     rgba(118, 75, 162, 0.3) 50%,
     rgba(240, 147, 251, 0.3) 100%
-  );
+  ); */
   animation: gradientShift 15s ease infinite;
+  pointer-events: none;
 }
 
 main section {
@@ -161,14 +166,14 @@ main section .right {
 main section .top {
   display: flex;
   align-items: center;
-  gap: var(--gutter-lg);
+  gap: var(--gutter-md);
 }
 
 main section .bottom {
   background: var(--bg-primary-gradient);
   width: 100%;
   padding: var(--padding-2xl);
-  aspect-ratio: 6/3.7; /* 5:3 as in youtube - 16:9 first one is width, second one is height */
+  aspect-ratio: 6/3.5; /* 5:3 as in youtube - 16:9 first one is width, second one is height */
   border-radius: var(--border-radius-xl);
   display: flex;
   justify-content: center;
@@ -183,12 +188,14 @@ main section .bottom .box {
   height: 100%;
   background: var(----bg-primary-gradient);
   border-radius: var(--border-radius-lg);
-  border: 2px dashed var(--bg-active-color);
+  border: 1px dashed var(--bg-active-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--text-secondary-color);
+  color: white;
   font-size: var(--font-lg);
+  gap: var(--gutter-md);
+  text-align: center;
 }
 
 main section .bottom .placeholder {
@@ -211,6 +218,7 @@ main section .right {
   display: flex;
   flex-direction: column;
   gap: var(--gutter-md);
+  height: 100%;;
 }
 
 main section .right .filters {
@@ -231,7 +239,8 @@ main section .right .filter input {
 
 canvas {
   max-width: 90%;
-  max-height: 100vh;
+  max-height: 80vh;
+  display: none;
 }
 
 .particle {

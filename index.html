@@ -14,35 +14,36 @@
   <body>
     <main>
       <section>
-        
-        <!-- Floating shapes -->
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
+        <div class="background">
+          <!-- Floating shapes -->
+          <div class="shape shape1"></div>
+          <div class="shape shape2"></div>
+          <div class="shape shape3"></div>
+          <div class="shape shape4"></div>
 
-        <div class="left">
-          <div class="top">
-            <label for="image-input" class="btn">
-              Choose image
-              <input type="file" id="image-input" accept="image/*" hidden />
-            </label>
-            <button class="btn" id="reset-btn">Reset</button>
-            <button class="btn" id="download-btn">Download</button>
-          </div>
-          <div class="bottom">
-            <div class="box">
-              <div class="placeholder">
-                <i class="ri-image-fill"></i>
-                <p>No image selected</p>
-              </div>
+          <div class="left">
+            <div class="top">
+              <label for="image-input" class="btn">
+                Choose image
+                <input type="file" id="image-input" accept="image/*" hidden />
+              </label>
+              <button class="btn" id="reset-btn">Reset</button>
+              <button class="btn" id="download-btn">Download</button>
             </div>
-            <canvas id="image-canvas"></canvas>
+            <div class="bottom">
+              <div class="box">
+                <div class="placeholder">
+                  <i class="ri-image-fill"></i>
+                  <p>No image selected</p>
+                </div>
+              </div>
+              <canvas id="image-canvas"></canvas>
+            </div>
           </div>
-        </div>
-        <div class="right">
-          <h2>Filters</h2>
-          <div class="filters"></div>
+          <div class="right">
+            <h2>Filters</h2>
+            <div class="filters"></div>
+          </div>
         </div>
       </section>
     </main>
