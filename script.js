@@ -29,30 +29,6 @@ const filters = {
     max: 20,
     unit: "px",
   },
-  sepia: {
-    value: 0,
-    min: 0, 
-    max: 100,
-    unit: "%",
-  },  
-  grayscale: {
-    value: 0,
-    min: 0,
-    max: 100,
-    unit: "%",
-  },  
-  invert: {
-    value: 0,
-    min: 0,
-    max: 100,
-    unit: "%",
-  },
-  opacity: {
-    value: 100,
-    min: 0,
-    max: 100,
-    unit: "%",
-  },
 };
 
 // Create floating particles
@@ -136,10 +112,6 @@ function applyFilters(){
     saturate(${filters.saturation.value}${filters.saturation.unit})
     hue-rotate(${filters.hueRotate.value}${filters.hueRotate.unit})
     blur(${filters.blur.value}${filters.blur.unit})
-    sepia(${filters.sepia.value}${filters.sepia.unit})
-    grayscale(${filters.grayscale.value}${filters.grayscale.unit})
-    invert(${filters.invert.value}${filters.invert.unit})
-    opacity(${filters.opacity.value}${filters.opacity.unit})
     `.trim();
   canvasCtx.drawImage(image, 0, 0);
 }
